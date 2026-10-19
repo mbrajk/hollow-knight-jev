@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "session_id": "synthetic-offline-example",
+  "sequence": 10,
+  "observed_utc": "2000-01-01T00:00:00Z",
+  "scene": "GG_Gruz_Mother",
+  "gameplay": true,
+  "paused": true,
+  "control_enabled": false,
+  "trial": { "slot": 4, "owned_session": false },
+  "episode": { "status": "running", "training": false, "hits": 0 },
+  "observation": {
+    "player": { "x": 10, "y": 1, "vx": 0, "vy": 0, "width": 1, "height": 2, "grounded": true, "facing": 1, "health": 5, "attack_ready": true, "blocked_left": false, "blocked_right": false },
+    "held": { "move": 0, "look": 0, "jump": false, "attack": false },
+    "abilities": { "run_speed": 8, "jump_speed": 16, "jump_speed_sustain_seconds": 0.2, "fixed_timestep_seconds": 0.02, "gravity_y": -60, "gravity_scale": 0.8, "has_double_jump": true, "has_wall_jump": true, "has_dash": false },
+    "player_motion": { "nail_recoil_remaining_seconds": 0 },
+    "input_timing": { "schema_version": 1, "jump_held": false, "jump_press_age_seconds": 0, "jump_held_fixed_steps": 0 },
+    "arena": { "left": 0, "right": 40, "floor": 0, "ceiling": 30 },
+    "enemies": [{ "x": 8, "y": 4, "width": 3, "height": 2, "vx": -3, "vy": 0, "state": "Fly" }],
+    "objects": []
+  }
+}
