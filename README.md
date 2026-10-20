@@ -2,7 +2,7 @@
 
 An experimental C# bridge and TypeSafe Jev controller for Hollow Knight. The game exposes bounded numerical observations; Jev chooses movement and nail strikes; the bridge applies short input leases. A local dashboard shows the observation, forecasts, model answers, and resulting controls.
 
-The current experiment is Gruz Mother in Godhome. Movement and strike selection are separate questions. Avoidance takes priority, so the controller can be too passive about dealing damage. This release does **not** claim a verified hitless victory or a solved tutorial. Combat pursuit and more extensive physics calibration remain open work.
+The current experiment is Gruz Mother in Godhome. Movement and strike selection are separate questions. Avoidance takes priority, so the controller can be too passive about dealing damage. Combat pursuit and more extensive physics calibration remain open work.
 
 This is a **source-only research prototype**. Bring your own game installation and TypeSafe API access. No game assets, game assemblies, save files, API keys, real session recordings, screenshots, videos, or private experiment history are included.
 
