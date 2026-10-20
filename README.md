@@ -15,11 +15,10 @@ This is a **source-only research prototype**. Bring your own game installation a
 | `controller/` | .NET CLI, typed Jev requests, grouped combat, local forecasts, spending ledger, dashboard, offline regression tests |
 | `scripts/` | Explicit local build, install, restore, launch, arena setup, and bounded paid trial commands |
 | `examples/` | Synthetic state for inspecting a request without the game or an API key |
-| `tools/` | Source publication allowlist and release checks |
 
 ## Requirements
 
-- Windows, PowerShell 7, .NET SDK 10; Python 3 is only needed for the release check.
+- Windows, PowerShell 7, .NET SDK 10.
 - Steam Hollow Knight **1.5.12620**, with the supported vanilla `Assembly-CSharp.dll`. The build checks its SHA-256 and rejects other versions or already patched assemblies. See [installation](docs/INSTALLATION.md).
 - An empty slot **4**, including no `user4*` local backup files. The harness refuses to adopt an existing personal save. Slots 1–3 are outside its control scope.
 - A TypeSafe account for live trials. Offline commands need no key and make no provider requests.
@@ -74,4 +73,4 @@ The dashboard prints its temporary `127.0.0.1` URL. It is read-only and stops on
 
 Authored integration code is under the [MIT license](LICENSE). Hollow Knight, Unity, and third-party dependencies are separate products and are not included or relicensed here. This project is unaffiliated with Team Cherry and TypeSafe.
 
-Publish only reviewed source from [the allowlist](tools/public-files.txt). Build output can contain patched commercial game code. Keep generated files, saves, keys and real traces private. See [the release checklist](docs/RELEASING.md). Fixes should first pass offline tests; do not spend API credits as part of an automated test or CI job.
+Build output can contain patched commercial game code and should not be redistributed. Fixes should first pass offline tests; do not spend API credits as part of an automated test or CI job.

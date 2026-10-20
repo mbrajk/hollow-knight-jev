@@ -6,7 +6,7 @@ The controller reads only `TYPESAFE_API_KEY` from its process environment and se
 
 The wrapper does not read `.env` files. Keep keys in your secret manager or local environment; do not place them on command lines or in scripts. Dependencies may require NuGet access during build. Offline controller tests, previews, replays and exports make no provider requests.
 
-Local JSONL traces contain full observations, requests, responses, times and session identifiers; diagnostics can include local paths. Save ownership receipts contain save hashes, slot/mode and timestamps. Screenshots are opt-in. These files are private by default and excluded from the publication allowlist. Offline replay HTML still embeds decision traces even though automatic screenshot embedding is disabled.
+Local JSONL traces contain full observations, requests, responses, times and session identifiers; diagnostics can include local paths. Save ownership receipts contain save hashes, slot/mode and timestamps. Screenshots are opt-in. Generated files are excluded from Git by the repository ignore rules. Offline replay HTML still embeds decision traces even though automatic screenshot embedding is disabled.
 
 ## Spending limits
 
