@@ -1,8 +1,42 @@
 # Hollow Knight + Jev
 
-An experimental C# bridge and TypeSafe Jev controller for Hollow Knight. The game exposes bounded numerical observations; Jev chooses movement and nail strikes; the bridge applies short input leases. A local dashboard shows the observation, forecasts, model answers, and resulting controls.
+**Jev chooses the next movement and nail strike from game state and short motion forecasts.**
 
-The current experiment is Gruz Mother in Godhome. Movement and strike selection are separate questions. Avoidance takes priority, so the controller can be too passive about dealing damage. Combat pursuit and more extensive physics calibration remain open work.
+Hollow Knight keeps moving while Jev is answering. This project gives it a compact description of the arena, the boss's current attack phase, and estimates of what could happen before and after its next input takes effect. Jev evaluates the available controls; a native bridge applies its choices as short button presses and holds.
+
+![An illustrated loop from native game observations through motion forecasts and two Jev choices to finite button inputs.](docs/images/decision-loop.gif)
+
+*Illustrated example, slowed for readability. Geometry comes from the C# forecast on synthetic states; the Jev answer and probability bars are illustrative. [Static diagrams and the full walkthrough →](docs/HOW-IT-WORKS.md)*
+
+## 1. Give Jev a useful description of the moment
+
+The bridge reads collision bodies, positions, velocity, walls, attack phases, available abilities and held buttons directly from the game. The controller turns those measurements into a compact JSON state, with combat coordinates relative to the knight. This integration uses structured state as its model input; the illustrations below make that state visible to us.
+
+![The knight is beside a wall and Gruz Mother is in charge windup. Bounding boxes and native state become named JSON fields.](docs/images/observation.svg)
+
+A boss with zero velocity can still be winding up an attack. A held jump button can mean either a newly pressed jump or a button that needs releasing before another jump. Those details change what the next input can accomplish.
+
+## 2. Account for the time between observation and action
+
+The C# forecast compares possible knight controls with possible boss trajectories. It checks **0.7 seconds ahead**, in **20 ms steps**, under **100 ms and 180 ms input-delay assumptions**. Existing movement, pending jumps and measured nail recoil continue during that delay. The pictured paths use a 140 ms delay; contact metrics combine the two tested delays and all retained boss branches.
+
+![Forecasts show why moving into the left wall cannot escape a charge, and why a slam windup retains multiple possible launch paths.](docs/images/possible-futures.svg)
+
+These are possible physical outcomes, not probabilities assigned to the boss's next RNG choice. For a slam windup, the code retains left/right launch possibilities and early/late phase timing. It sends Jev each control's projected clearance and contact timing, including exposure before the new input can begin. The forecast itself does not choose a control.
+
+## 3. Let Jev choose movement and attack separately
+
+One request contains the same state for two independent [Choice questions](https://docs.typesafe.ai/primitives/choice): **movement** and **strike**. Each has the goal, control mechanics and descriptions of its available options. Movement includes standing, walking and jump variants, plus dash when ready. Strike includes no attack or an available nail direction.
+
+![Two independent Choice questions produce an illustrative stationary jump and no strike; the controller combines them into move zero, jump true and attack false.](docs/images/jev-decisions.svg)
+
+Jev returns a choice and a distribution over each question's options. Those probabilities describe **action choices**, not the chance of surviving or winning. The default grouped controller follows the returned choices, checks that the observation is still valid, and sends a button state lasting **at most 300 ms**. The next request can begin while that input is still active. A chosen nail strike is a **50 ms press**.
+
+## Make a decision inspectable
+
+The dashboard pairs the exact input and instructions with Jev's answer, probabilities, response time, selected buttons and the bridge's acknowledgement. That lets us examine the evidence available for a choice and see whether it was applied. Jev does not return a written rationale or a thought transcript; an explanation of a failure comes from comparing that evidence with the outcome.
+
+The current experiment is Gruz Mother in Godhome. Its instructions prioritize avoiding hits and taking available nail openings, which can make combat too passive. More aggressive pursuit and better timing calibration are future experiments. The [walkthrough](docs/HOW-IT-WORKS.md) includes an actual forecast table, request fields, source pointers and the current model's limits.
 
 This is a **source-only research prototype**. Bring your own game installation and TypeSafe API access. No game assets, game assemblies, save files, or API keys are included.
 

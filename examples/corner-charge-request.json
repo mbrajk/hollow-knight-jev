@@ -1,0 +1,533 @@
+{
+  "model": "jev-1.13.0",
+  "state": {
+    "player": {
+      "vx": 0,
+      "vy": 0,
+      "grounded": true,
+      "facing": 1,
+      "health": 5,
+      "attack_ready": true,
+      "blocked_left": true,
+      "blocked_right": false,
+      "left": -0.5,
+      "right": 0.5,
+      "bottom": -1,
+      "top": 1
+    },
+    "held": {
+      "move": 0,
+      "look": 0,
+      "jump": false,
+      "attack": false
+    },
+    "enemies": [
+      {
+        "vx": 0,
+        "vy": 0,
+        "state": "Charge Antic",
+        "left": 6.5,
+        "right": 9.5,
+        "bottom": -1,
+        "top": 1,
+        "state_elapsed_seconds": 0.45,
+        "avoidance_zone": {
+          "left": 4.5,
+          "right": 11.5,
+          "bottom": -3,
+          "top": 3,
+          "margin": 2
+        }
+      }
+    ],
+    "arena": {
+      "left": -0.5,
+      "right": 29.5,
+      "floor": -1,
+      "ceiling": 11
+    },
+    "run_speed": 8,
+    "jump_speed": 16,
+    "nearest_enemy": {
+      "enemy_index": 0,
+      "body_gap": 6,
+      "horizontal_gap": 6,
+      "vertical_gap": 0
+    },
+    "input_physics": {
+      "jump_phase": "released",
+      "nail_recoil": {
+        "nail_recoil_remaining_seconds": 0
+      }
+    },
+    "attack_window": [
+      {
+        "enemy_index": 0,
+        "branch": "committed_charge_early",
+        "at_seconds": 0.14,
+        "left": 6.5,
+        "right": 9.5,
+        "bottom": -1,
+        "top": 1
+      },
+      {
+        "enemy_index": 0,
+        "branch": "committed_charge_early",
+        "at_seconds": 0.22,
+        "left": 6.5,
+        "right": 9.5,
+        "bottom": -1,
+        "top": 1
+      },
+      {
+        "enemy_index": 0,
+        "branch": "committed_charge_late",
+        "at_seconds": 0.14,
+        "left": 6.5,
+        "right": 9.5,
+        "bottom": -1,
+        "top": 1
+      },
+      {
+        "enemy_index": 0,
+        "branch": "committed_charge_late",
+        "at_seconds": 0.22,
+        "left": 6.5,
+        "right": 9.5,
+        "bottom": -1,
+        "top": 1
+      }
+    ],
+    "forecast": {
+      "horizon_seconds": 0.7,
+      "control_delay_seconds": [
+        0.1,
+        0.18
+      ],
+      "assumptions": "Approximate swept paths across boss branches and 0.10/0.18s input delays; t_x_y is seconds,x,y relative to the current knight. Measured animation shapes change boss bounds. Slam End retains momentum, decaying by 0.85 per 20ms physics step. A fresh ground press awaiting physics and measured ongoing nail recoil continue during response delay. Post-input fields summarize the worst branch/delay; durations are not probabilities. Contact metrics exclude Shadow Dash immunity with 20ms boundary tolerance. New strike recoil, later unknown RNG transitions and exact wall-slide locks remain uncertain. Beyond the input lease, paths assume renewed intent.",
+      "enemy_paths": [
+        {
+          "enemy_index": 0,
+          "branch": "committed_charge_early",
+          "centers_t_x_y": [
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              0.14,
+              8,
+              0
+            ],
+            [
+              0.3,
+              7.48,
+              0
+            ],
+            [
+              0.5,
+              2.28,
+              0
+            ],
+            [
+              0.7,
+              2.82,
+              0
+            ]
+          ]
+        },
+        {
+          "enemy_index": 0,
+          "branch": "committed_charge_late",
+          "centers_t_x_y": [
+            [
+              0,
+              8,
+              0
+            ],
+            [
+              0.14,
+              8,
+              0
+            ],
+            [
+              0.3,
+              8,
+              0
+            ],
+            [
+              0.5,
+              3.84,
+              0
+            ],
+            [
+              0.7,
+              2.04,
+              0
+            ]
+          ]
+        }
+      ],
+      "movement_outcomes": {
+        "left": {
+          "centers_t_x_y": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0.14,
+              0,
+              0
+            ],
+            [
+              0.3,
+              0,
+              0
+            ],
+            [
+              0.5,
+              0,
+              0
+            ],
+            [
+              0.7,
+              0,
+              0
+            ]
+          ],
+          "minimum_body_clearance": -1,
+          "first_contact_seconds": 0.52,
+          "first_body_overlap_seconds": 0.52,
+          "post_input_body_overlap_seconds": 0.52,
+          "post_input_minimum_body_clearance": -1,
+          "post_input_overlap_duration_seconds": 0.12
+        },
+        "left_jump": {
+          "centers_t_x_y": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0.14,
+              0,
+              0.3
+            ],
+            [
+              0.3,
+              0,
+              2.71
+            ],
+            [
+              0.5,
+              0,
+              5.02
+            ],
+            [
+              0.7,
+              0,
+              5.44
+            ]
+          ],
+          "minimum_body_clearance": 2.65,
+          "first_contact_seconds": null,
+          "first_body_overlap_seconds": null,
+          "post_input_body_overlap_seconds": null,
+          "post_input_minimum_body_clearance": 2.65,
+          "post_input_overlap_duration_seconds": 0
+        },
+        "still": {
+          "centers_t_x_y": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0.14,
+              0,
+              0
+            ],
+            [
+              0.3,
+              0,
+              0
+            ],
+            [
+              0.5,
+              0,
+              0
+            ],
+            [
+              0.7,
+              0,
+              0
+            ]
+          ],
+          "minimum_body_clearance": -1,
+          "first_contact_seconds": 0.52,
+          "first_body_overlap_seconds": 0.52,
+          "post_input_body_overlap_seconds": 0.52,
+          "post_input_minimum_body_clearance": -1,
+          "post_input_overlap_duration_seconds": 0.12
+        },
+        "still_jump": {
+          "centers_t_x_y": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0.14,
+              0,
+              0.3
+            ],
+            [
+              0.3,
+              0,
+              2.71
+            ],
+            [
+              0.5,
+              0,
+              5.02
+            ],
+            [
+              0.7,
+              0,
+              5.44
+            ]
+          ],
+          "minimum_body_clearance": 2.65,
+          "first_contact_seconds": null,
+          "first_body_overlap_seconds": null,
+          "post_input_body_overlap_seconds": null,
+          "post_input_minimum_body_clearance": 2.65,
+          "post_input_overlap_duration_seconds": 0
+        },
+        "right": {
+          "centers_t_x_y": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0.14,
+              0.16,
+              0
+            ],
+            [
+              0.3,
+              1.44,
+              0
+            ],
+            [
+              0.5,
+              3.04,
+              0
+            ],
+            [
+              0.7,
+              4.64,
+              0
+            ]
+          ],
+          "minimum_body_clearance": -1.8,
+          "first_contact_seconds": 0.42,
+          "first_body_overlap_seconds": 0.42,
+          "post_input_body_overlap_seconds": 0.42,
+          "post_input_minimum_body_clearance": -1.8,
+          "post_input_overlap_duration_seconds": 0.22
+        },
+        "right_jump": {
+          "centers_t_x_y": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0.14,
+              0.16,
+              0.3
+            ],
+            [
+              0.3,
+              1.44,
+              2.71
+            ],
+            [
+              0.5,
+              3.04,
+              5.02
+            ],
+            [
+              0.7,
+              4.64,
+              5.44
+            ]
+          ],
+          "minimum_body_clearance": 1.86,
+          "first_contact_seconds": null,
+          "first_body_overlap_seconds": null,
+          "post_input_body_overlap_seconds": null,
+          "post_input_minimum_body_clearance": 1.86,
+          "post_input_overlap_duration_seconds": 0
+        },
+        "left_rejump": {
+          "centers_t_x_y": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0.14,
+              0,
+              0
+            ],
+            [
+              0.3,
+              0,
+              1.8
+            ],
+            [
+              0.5,
+              0,
+              4.52
+            ],
+            [
+              0.7,
+              0,
+              5.52
+            ]
+          ],
+          "minimum_body_clearance": 2.24,
+          "first_contact_seconds": null,
+          "first_body_overlap_seconds": null,
+          "post_input_body_overlap_seconds": null,
+          "post_input_minimum_body_clearance": 2.24,
+          "post_input_overlap_duration_seconds": 0
+        },
+        "still_rejump": {
+          "centers_t_x_y": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0.14,
+              0,
+              0
+            ],
+            [
+              0.3,
+              0,
+              1.8
+            ],
+            [
+              0.5,
+              0,
+              4.52
+            ],
+            [
+              0.7,
+              0,
+              5.52
+            ]
+          ],
+          "minimum_body_clearance": 2.24,
+          "first_contact_seconds": null,
+          "first_body_overlap_seconds": null,
+          "post_input_body_overlap_seconds": null,
+          "post_input_minimum_body_clearance": 2.24,
+          "post_input_overlap_duration_seconds": 0
+        },
+        "right_rejump": {
+          "centers_t_x_y": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0.14,
+              0.16,
+              0
+            ],
+            [
+              0.3,
+              1.44,
+              1.8
+            ],
+            [
+              0.5,
+              3.04,
+              4.52
+            ],
+            [
+              0.7,
+              4.64,
+              5.52
+            ]
+          ],
+          "minimum_body_clearance": 1.34,
+          "first_contact_seconds": null,
+          "first_body_overlap_seconds": null,
+          "post_input_body_overlap_seconds": null,
+          "post_input_minimum_body_clearance": 1.34,
+          "post_input_overlap_duration_seconds": 0
+        }
+      },
+      "pre_input_body_overlap_seconds": null
+    },
+    "dash_capabilities": {
+      "dash_ready": false
+    },
+    "jump_capabilities": {
+      "can_wall_jump": false,
+      "can_double_jump": false
+    },
+    "available_attack_controls": [
+      "nail"
+    ],
+    "facing_direction": "right",
+    "available_nail_directions": [
+      "right",
+      "up"
+    ]
+  },
+  "questions": {
+    "movement": {
+      "type": "choice",
+      "instructions": "Defeat Gruz Mother without being hit. Choose the movement whose predicted swept path avoids the boss across the possible branches. forecast compares each control with the same boss branches and realistic input delay. First avoid predicted body overlap. first_body_overlap_seconds describes actual body intersection; first_contact_seconds also includes a 0.15 modelling margin and does not by itself mean a damaging overlap. If every option has early contact during the response delay, compare post_input_body_overlap_seconds, post_input_minimum_body_clearance and post_input_overlap_duration_seconds for the controllable escape; the shared pre-input exposure does not make the later paths equivalent. Null means no event within this horizon. Treat a margin breach as uncertain proximity, not proof of safety or damage. When walking, standing or jumping already avoids contact, prefer those ordinary controls so nail attacks remain available. Reserve dash for threats that ordinary movement cannot evade or for a clearly necessary escape; do not spend it just to maximize distance. Dashing prevents nail attacks until it finishes. Between safe ordinary options, keep useful clearance while avoiding unnecessary displacement. An earlier contact time is worse; negative minimum_body_clearance is overlap. Account for forecast uncertainty and the observed windup. Stay still with jump OFF when its path remains clear; do not move merely to attack. A blocked direction cannot provide horizontal escape. Only use a blocked direction intentionally for its wall-slide/jump effect when the predicted vertical path helps. Repeatedly holding jump does not initiate a fresh jump. The _rejump alternatives explicitly release for 40ms and press again; use them when a new jump is needed while jump is held. Use _jump to sustain current ascent. Repressing can consume an available double jump; use the measured jump_capabilities and projected paths. Dash options exist only when the native dash action is available. Their forecasts include native dash travel and, when ready, its brief Shadow Dash contact immunity; landing or being inside an enemy when it ends is still dangerous. Dashing interrupts an attack. The strike decision is independent of movement and includes whether to strike and its direction. Jump ON with held.jump=false is a fresh press. ON with held.jump=true continues the hold and cannot start another jump. input_physics distinguishes a fresh ground press awaiting physics from a held button after landing. A pending press may still report grounded; its ascent is already included in the response-delay forecast. After a completed landing with jump still held, OFF re-arms the next press. While rising ON sustains ascent and OFF shortens it. While falling, another jump requires a fresh press after OFF. Inputs last at most 300ms; projections beyond that assume renewed intent.",
+      "criteria": {
+        "left": "Move left against the current solid wall: horizontal travel is blocked, so this is NOT horizontal evasion; leave jump released. Inspect forecast.movement_outcomes.left; a fresh airborne wall jump can push AWAY from the wall regardless of the held direction.",
+        "left_jump": "Move left against the current solid wall: horizontal travel is blocked, so this is NOT horizontal evasion; press jump freshly; start a jump if the native game allows it. Inspect forecast.movement_outcomes.left_jump; a fresh airborne wall jump can push AWAY from the wall regardless of the held direction.",
+        "still": "Stay horizontally still; leave jump released. Inspect forecast.movement_outcomes.still; a fresh airborne wall jump can push AWAY from the wall regardless of the held direction.",
+        "still_jump": "Stay horizontally still; press jump freshly; start a jump if the native game allows it. Inspect forecast.movement_outcomes.still_jump; a fresh airborne wall jump can push AWAY from the wall regardless of the held direction.",
+        "right": "Move right; leave jump released. Inspect forecast.movement_outcomes.right; a fresh airborne wall jump can push AWAY from the wall regardless of the held direction.",
+        "right_jump": "Move right; press jump freshly; start a jump if the native game allows it. Inspect forecast.movement_outcomes.right_jump; a fresh airborne wall jump can push AWAY from the wall regardless of the held direction.",
+        "left_rejump": "Move left against the current solid wall: horizontal travel is blocked, so this is NOT horizontal evasion; release jump for 40ms then press freshly: request a new ground jump, wall jump or available double jump; this is NOT sustaining current ascent. Inspect forecast.movement_outcomes.left_rejump; a fresh airborne wall jump can push AWAY from the wall regardless of the held direction.",
+        "still_rejump": "Stay horizontally still; release jump for 40ms then press freshly: request a new ground jump, wall jump or available double jump; this is NOT sustaining current ascent. Inspect forecast.movement_outcomes.still_rejump; a fresh airborne wall jump can push AWAY from the wall regardless of the held direction.",
+        "right_rejump": "Move right; release jump for 40ms then press freshly: request a new ground jump, wall jump or available double jump; this is NOT sustaining current ascent. Inspect forecast.movement_outcomes.right_rejump; a fresh airborne wall jump can push AWAY from the wall regardless of the held direction."
+      }
+    },
+    "strike": {
+      "type": "choice",
+      "instructions": "Choose a feasible nail strike and its direction together, or none. Deal damage when a strike can connect and attack_ready is true. attack_window gives projected enemy collision edges at input arrival, relative to the knight center: negative x is left, positive x right, positive y up. Use those actual edges, not avoidance_zone. The knight's body edges are player.left/right/bottom/top. Horizontal strikes use the observed facing_direction; the opposite direction is unavailable without first turning. Movement is decided independently, so do not assume its answer will turn the knight before this strike. A strike aimed away from the enemy cannot hit it. A strike into a solid wall can recoil the knight away from the wall; down strikes on an enemy produce a bounce. Choose none if no available direction can connect; do not force an aim merely because an enemy is nearby. Nail is currently the only connected weapon. Strike is a 50ms button press followed by native cooldown.",
+      "criteria": {
+        "none": "Do not strike: attack is unavailable or none of the available strike directions can reach an enemy in attack_window.",
+        "right": "Strike with the nail toward right, the observed facing direction, ONLY if an enemy is within that horizontal strike's reach at arrival. Right is positive x: an enemy wholly on the negative-x side is not in front of this strike.",
+        "up": "Strike upward with the nail ONLY if the enemy's projected body is above and sufficiently aligned horizontally for an upward strike to connect."
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "session_id": "synthetic-corner-charge",
+  "sequence": 10,
+  "observed_utc": "2000-01-01T00:00:00Z",
+  "scene": "GG_Gruz_Mother",
+  "gameplay": true,
+  "paused": true,
+  "control_enabled": false,
+  "trial": {
+    "slot": 4,
+    "owned_session": false
+  },
+  "episode": {
+    "status": "running",
+    "training": false,
+    "hits": 0
+  },
+  "observation": {
+    "player": {
+      "x": 0.5,
+      "y": 1,
+      "vx": 0,
+      "vy": 0,
+      "width": 1,
+      "height": 2,
+      "grounded": true,
+      "facing": 1,
+      "health": 5,
+      "attack_ready": true,
+      "blocked_left": true,
+      "blocked_right": false
+    },
+    "held": {
+      "move": 0,
+      "look": 0,
+      "jump": false,
+      "attack": false
+    },
+    "abilities": {
+      "run_speed": 8,
+      "jump_speed": 16,
+      "jump_speed_sustain_seconds": 0.2,
+      "fixed_timestep_seconds": 0.02,
+      "gravity_y": -60,
+      "gravity_scale": 0.8,
+      "has_double_jump": false,
+      "has_wall_jump": false,
+      "has_dash": false
+    },
+    "player_motion": {
+      "nail_recoil_remaining_seconds": 0,
+      "ground_jump_ready": true,
+      "dash_ready": false,
+      "can_double_jump": false,
+      "can_wall_jump": false
+    },
+    "input_timing": {
+      "schema_version": 1,
+      "jump_held": false,
+      "jump_press_age_seconds": null,
+      "physics_steps_since_jump_press": null
+    },
+    "arena": {
+      "left": 0,
+      "right": 30,
+      "floor": 0,
+      "ceiling": 12
+    },
+    "enemies": [
+      {
+        "x": 8,
+        "y": 0,
+        "width": 3,
+        "height": 2,
+        "vx": 0,
+        "vy": 0,
+        "state": "Charge Antic",
+        "state_elapsed_seconds": 0.45,
+        "motion": {
+          "charge_angle_degrees": 180,
+          "animation_remaining_seconds": 0.3
+        }
+      }
+    ],
+    "objects": []
+  }
+}

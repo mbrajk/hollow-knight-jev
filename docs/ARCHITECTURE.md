@@ -1,14 +1,8 @@
 # Architecture and experiment limits
 
-```text
-User's game -> native bridge -> local state.json -> explicit state filter
-                                                    |
-                                         forecasts + Jev request
-                                                    |
-User's game <- bounded input <- local command.json <- typed answers
-                                                    |
-                                           local log / dashboard
-```
+For a visual explanation with synthetic examples, forecast tables and request fields, start with [How Jev plays Hollow Knight](HOW-IT-WORKS.md).
+
+![Shared observations and forecasts feed movement and strike choices, which become a finite command.](images/jev-decisions.svg)
 
 The bridge runs on Unity's main thread. It measures the knight's position, velocity, bounds, grounded state, available abilities and input timing; nearby geometry; enemy bodies, velocity and exposed state-machine state; and arena bounds. It has no provider credentials or network client. The controller constructs a new request from a field allowlist. Filesystem paths, save contents and arbitrary envelope/debug fields are not model observations.
 
